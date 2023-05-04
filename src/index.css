@@ -7,3 +7,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+*::selection{
+  background-color: rgb(250 204 21);
+  color:#000;
+}
