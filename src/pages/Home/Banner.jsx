@@ -1,16 +1,20 @@
 import React from 'react'
 
 const Banner = () => {
+  const bg = "https://images.pexels.com/photos/5917850/pexels-photo-5917850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   return (
-    <section id='home'
-    style={{backgroundImage: "url('https://images.unsplash.com/photo-1601762603339-fd61e28b698a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80')",
-     }}
-    className="pt-32 bg-cover h-[100vh] w-full pb-24 flex justify-center items-center">
-      {/* <img src="" alt="" srcset="" className="cover w-full h-48" /> */}
-      <div className=" absolute text-6xl flex justify-center items-center">
-        <p>
+    <section id='home'>
+     
+      <img src={bg} alt="" className="w-full h-[100vh] bg-cover" />
+      <div className="absolute top-0 left-0 h-full w-full bg-slate-500/40  ">
+      <div className="justify-center items-center h-full p-5 flex flex-col ">
+        <p className="text-5xl text-center">
             FASHION ALWAYS CHANGE
         </p>
+        <p className="mt-10 text-lg text-center">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, qui?
+        </p>
+      </div>
       </div>
     </section>
   )
