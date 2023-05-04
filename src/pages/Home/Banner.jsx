@@ -14,6 +14,11 @@ const Banner = () => {
         <p className="mt-10 text-lg text-center">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, qui?
         </p>
+        <div className="z-10 space-x-6">
+          <button className="relative border-2 uppercase mt-10 px-10 py-3 rounded-tr-[25px] font-semibold bg-transparent text-yellow-400 transition-colors before:absolute">
+          Shart Shoping
+          </button>
+        </div>
       </div>
       </div>
     </section>
