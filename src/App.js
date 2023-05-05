@@ -3,9 +3,11 @@ import Home from "./pages/Home/Home";
 
 function App() {
   return (
-    <div className="App bg-black">
+    <div className="App">
       <Header />
-      <Home />
+      <Home 
+      className="w-5/6"
+      />
     </div>
   );
 }
