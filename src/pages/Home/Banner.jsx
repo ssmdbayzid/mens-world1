@@ -9,7 +9,7 @@ const Banner = () => {
      
       <img src={bg} alt="" className="w-full h-[100vh]  bg-cover" />
       <div className="absolute top-0 left-0  h-[100vh] w-full bg-slate-500/40  ">
-      <div className="justify-center items-center h-full p-5 flex flex-col ">
+      <div className="justify-center items-center h-full p-8 flex flex-col ">
 
         <motion.p 
         initial="hidden"
@@ -32,8 +32,8 @@ const Banner = () => {
           hidden:{opacity: 0, y: 80},
           visible: {opacity:1, y:0}
         }}
-        className="mt-10 text-xl text-center  text-white">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, qui?
+        className="mt-10 text-2xl mx-auto md:w-3/5 text-center text-white">
+          A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country.
         </motion.p>
         <motion.div
          initial="hidden"

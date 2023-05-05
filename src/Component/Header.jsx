@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 // import bgImg from '../assets/cover.avif'
 import profilePhoto from '../assets/pp_photo.jpg'
 import useMediaQuery from '../hooks/useMediaQuery'
+import logo from '../assets/mensLogo.png'
 
 const Header = () => {
   const [isMenuToggle, setMenuToggle] = useState(false)
@@ -11,9 +12,8 @@ const Header = () => {
 
   return (<nav className="fixed z-30 w-full border-gray-200 dark:bg-gray-900">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-  <a href="https://flowbite.com/" className="flex items-center">
-      <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
-      <span className="self-center text-2xl font-semibold whitespace-nowrap text-yellow-400 dark:text-white">Flowdbite</span>
+  <a href="https://flowbite.com/" className="">
+      <img src={logo} className="h-12 " alt="Flowbite Logo" />     
   </a>
 
   {/* ------------- Profile Menu  --------------*/}
