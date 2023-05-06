@@ -9,7 +9,7 @@ const PopularItems = () => {
 
       <div className="relative max-w-[352px] h-96 overflow-hidden bg-white border border-gray-200 rounded-lg shadow group">
         <img className="rounded-t-lg h-full w-full hover:scale-150 transition duration-500 ease-in-out " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular1.png.webp" alt="" />
-        <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500  bg-primary bg-opacity-30 flex justify-center items-center flex-col gap-8 px-8" >
+        <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500  bg-primary bg-opacity-30 flex justify-center items-center flex-col px-8" >
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -34,7 +34,7 @@ const PopularItems = () => {
 
       <div className="relative max-w-sm w-[352px] h-96 overflow-hidden bg-white border border-gray-200 rounded-lg shadow group">
         <img className="rounded-t-lg h-full w-full hover:scale-150 transition duration-500 ease-in-out " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular1.png.webp" alt="" />
-        <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500  bg-primary bg-opacity-30 flex justify-center items-center flex-col gap-8 px-8" >
+        <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500  bg-primary bg-opacity-30 flex justify-center items-center flex-col px-8" >
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -57,9 +57,9 @@ const PopularItems = () => {
 
       {/* --------- Items 3 -------  */}
 
-      <div className="relative max-w-[352px] w-[352px] h-96 overflow-hidden bg-white border border-gray-200 rounded-lg shadow group">
+      <div className="relative max-w-[352px] w-full h-96 overflow-hidden bg-white border border-gray-200 rounded-lg shadow group">
         <img className="rounded-t-lg h-full w-[352px] hover:scale-150 transition duration-500 ease-in-out  " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular1.png.webp" alt="" />
-        <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500  bg-primary bg-opacity-30 flex justify-center items-center flex-col gap-8 px-8" >
+        <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500  bg-primary bg-opacity-30 flex justify-center items-center flex-col px-8" >
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -84,7 +84,7 @@ const PopularItems = () => {
 
       <div className="relative max-w-[352px] w-[352px] h-96 overflow-hidden bg-white border border-gray-200 rounded-lg shadow group">
         <img className="rounded-t-lg h-full w-full hover:scale-150 transition duration-500 ease-in-out " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular1.png.webp" alt="" />
-        <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500  bg-primary bg-opacity-30 flex justify-center items-center flex-col gap-8 px-8" >
+        <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500  bg-primary bg-opacity-30 flex justify-center items-center flex-col px-8" >
           <motion.div
             initial="hidden"
             whileInView="visible"
