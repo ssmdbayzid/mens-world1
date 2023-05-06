@@ -1,6 +1,7 @@
 import React from 'react'
 import Banner from './Banner'
 import PopularItems from './PopularItems'
+import Products from './Products'
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner />
       < PopularItems
        />
+       <Products />
     </div>
   )
 }
