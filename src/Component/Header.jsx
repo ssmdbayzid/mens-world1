@@ -55,11 +55,11 @@ const Header = () => {
    
     { aboveMediumScreen ? (<div className="w-auto hidden md:flex order-1 items-center justify-between">
       <ul className="flex justify-between gap-8 font-sembold  ">
-        <li className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-yellow-200 transition duration-500">Home</li>
-        <li className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-yellow-200 transition duration-500">Blog</li>
-        <l className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-yellow-200 transition duration-500"i>Contact</l>
-        <li className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-yellow-200 transition duration-500">About</li>
-        <li className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-yellow-200 transition duration-500">Wrong</li>
+        <li className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500">Home</li>
+        <li className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500">Blog</li>
+        <l className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500"i>Contact</l>
+        <li className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500">About</li>
+        <li className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500">Wrong</li>
       </ul>
     </div>) : ( !isMenuToggle ?
     

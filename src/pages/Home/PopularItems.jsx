@@ -53,7 +53,7 @@ const PopularItems = () => {
        visible: { opacity: 1, y: 0 }
       }}
       className="relative max-w-sm h-96 overflow-hidden bg-white border border-gray-200 rounded-lg shadow group">
-        <img className="rounded-t-lg h-full w-full scale-95 group-hover:scale-125  transition duration-500 ease-in-out " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular1.png.webp" alt="" />
+        <img className="rounded-t-lg h-full w-full scale-95 group-hover:scale-125  transition duration-500 ease-in-out " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular2.png.webp" alt="" />
         <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500   bg-secondary/50 flex justify-center items-center flex-col px-8" >
 
           {/* Button Animation  */}
@@ -89,7 +89,7 @@ const PopularItems = () => {
        visible: { opacity: 1, y: 0 }
       }}
       className="relative max-w-sm h-96 overflow-hidden bg-white border border-gray-200 rounded-lg shadow group">
-        <img className="rounded-t-lg h-full w-full scale-95 group-hover:scale-125  transition duration-500 ease-in-out " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular1.png.webp" alt="" />
+        <img className="rounded-t-lg h-full w-full scale-95 group-hover:scale-125  transition duration-500 ease-in-out " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular3.png.webp" alt="" />
         <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500   bg-secondary/50 flex justify-center items-center flex-col px-8" >
 
           {/* Button Animation  */}
@@ -125,7 +125,7 @@ const PopularItems = () => {
        visible: { opacity: 1, y: 0 }
       }}
       className="relative max-w-sm h-96 overflow-hidden bg-white border border-gray-200 rounded-lg shadow group">
-        <img className="rounded-t-lg h-full w-full scale-95 group-hover:scale-125  transition duration-500 ease-in-out " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular1.png.webp" alt="" />
+        <img className="rounded-t-lg h-full w-full scale-95 group-hover:scale-125  transition duration-500 ease-in-out " src="https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/popular4.png.webp" alt="" />
         <div className="absolute h-full w-full bottom-[-100%] group-hover:bottom-0 left-0 transition-all duration-500   bg-secondary/50 flex justify-center items-center flex-col px-8" >
 
           {/* Button Animation  */}
