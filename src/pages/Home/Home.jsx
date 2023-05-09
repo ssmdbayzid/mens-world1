@@ -2,6 +2,7 @@ import React from 'react'
 import Banner from './Banner'
 import PopularItems from './PopularItems'
 import Products from './Products'
+import Offer from './Offer'
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       < PopularItems
        />
        <Products />
+       <Offer />
     </div>
   )
 }
