@@ -4,13 +4,13 @@ import profilePhoto from '../assets/pp_photo.jpg'
 import useMediaQuery from '../hooks/useMediaQuery'
 import logo from '../assets/mensLogo.png'
 
-const Header = () => {
+const Header = ({isTopOfPage, setTopOfPage}) => {
   const [isMenuToggle, setMenuToggle] = useState(false)
   const [isProfileMenuToggle, setProfileMenuToggle] = useState(false)
 
   const aboveMediumScreen = useMediaQuery("(min-width: 768px)")
 
-  return (<nav className="fixed z-30 w-full border-gray-200 dark:bg-gray-900">
+  return (<nav className={`${isTopOfPage ? "" : "bg-secondary/5 backdrop-filter backdrop-blur-sm py-"} fixed z-30 w-full border-gray-200 dark:bg-gray-900`}>
   <div className="max-w-screen-xl w-5/6 flex flex-wrap items-center justify-between mx-auto p-4">
   <a href="https://flowbite.com/" className="">
       <img src={logo} className="h-12 " alt="Flowbite Logo" />     
