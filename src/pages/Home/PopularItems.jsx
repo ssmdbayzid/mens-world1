@@ -47,7 +47,7 @@ const PopularItems = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: 1, amount: 0.5 }}
-      transition={{ delay: 0, duration: 0.9 }}
+      transition={{ delay: 0.2, duration: 0.9 }}
       variants={{
        hidden: { opacity: 0, y: 80 },
        visible: { opacity: 1, y: 0 }
@@ -83,7 +83,7 @@ const PopularItems = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: 1, amount: 0.5 }}
-      transition={{ delay: 0, duration: 0.9 }}
+      transition={{ delay: 0.4, duration: 0.9 }}
       variants={{
        hidden: { opacity: 0, y: 80 },
        visible: { opacity: 1, y: 0 }
@@ -119,7 +119,7 @@ const PopularItems = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: 1, amount: 0.5 }}
-      transition={{ delay: 0, duration: 0.9 }}
+      transition={{ delay: 0.6, duration: 0.9 }}
       variants={{
        hidden: { opacity: 0, y: 80 },
        visible: { opacity: 1, y: 0 }
