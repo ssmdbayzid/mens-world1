@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Footer from "./Component/Footer";
 import Header from "./Component/Header";
 import Home from "./pages/Home/Home";
+import Purchase from "./pages/Purchase/Purchase";
+import Routers from "./Routers/Routers";
 
-function App() {
-  const [isTopOfPage, setIsTopOfPage] = useState(true)
+function App() {  const [isTopOfPage, setIsTopOfPage] = useState(true)
 
   useEffect(()=>{
     const hanndleScroll = ()=>{
@@ -22,9 +23,9 @@ function App() {
       isTopOfPage={isTopOfPage}
       setIsTopOfPage={setIsTopOfPage}
       />
-      <Home 
-      className="w-5/6"
-      />
+      <div>
+        <Routers/>
+      </div>
     <Footer
      className="w-5/6"
     />
@@ -33,3 +34,13 @@ function App() {
 }
 
 export default App;
+
+
+   /*    <Home 
+      className="w-5/6"
+      />
+      <Purchase 
+      className="w-5/6"
+      /> 
+
+      */

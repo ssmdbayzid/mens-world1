@@ -11,7 +11,7 @@ const Testimonial = () => {
                     </div>
                     <div class="flex flex-col md:flex-row max-w-7xl justify-center items-center ">
 
-                        <div class="overflow-hidden w-full m-4 flex justify-center   md:w-[33%]  shadow-xl bg-cyan-400">
+                        <div class="overflow-hidden w-full m-4 flex justify-center   md:w-[33%]  shadow-sm bg-cyan-400">
 
                             <div class="flex flex-col md:flex-row items-center justify-center  bg-white rounded-tl-full ">
                                 <div class="  items-center justify-center flex py-2">
@@ -37,7 +37,7 @@ const Testimonial = () => {
 
                             </div>
                         </div>
-                        <div class="overflow-hidden w-full m-4 flex justify-center   md:w-[33%]  shadow-xl bg-cyan-400">
+                        <div class="overflow-hidden w-full m-4 flex justify-center   md:w-[33%]  shadow-sm bg-cyan-400">
 
                             <div class="flex flex-col md:flex-row items-center justify-center  bg-white rounded-tl-full ">
                                 <div class="  items-center justify-center flex py-2">
@@ -62,7 +62,7 @@ const Testimonial = () => {
 
                             </div>
                         </div>
-                        <div class="overflow-hidden w-full m-4 flex justify-center   md:w-[33%]  shadow-xl bg-cyan-400">
+                        <div class="overflow-hidden w-full m-4 flex justify-center   md:w-[33%]  shadow-sm bg-cyan-400">
 
                             <div class="flex flex-col md:flex-row items-center justify-center  bg-white rounded-tl-full ">
                                 <div class="  items-center justify-center flex py-2">
