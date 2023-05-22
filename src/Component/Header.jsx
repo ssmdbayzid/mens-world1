@@ -4,14 +4,18 @@ import profilePhoto from '../assets/pp_photo.jpg'
 import useMediaQuery from '../hooks/useMediaQuery'
 import logo from '../assets/mensLogo.png'
 import { Link } from 'react-router-dom'
+import ShoppingCartModal from './share/ShoppingCartModal'
 
 const Header = ({isTopOfPage, setTopOfPage}) => {
   const [isMenuToggle, setMenuToggle] = useState(false)
   const [isProfileMenuToggle, setProfileMenuToggle] = useState(false)
+  const [show, setShow] = useState(false);
+
 
   const aboveMediumScreen = useMediaQuery("(min-width: 768px)")
 
-  return (<nav className={`${isTopOfPage ? "" : "bg-secondary/30 backdrop-filter backdrop-blur-[2px] "} fixed z-30 w-full border-gray-200 dark:bg-gray-900 text-white`}>
+  return ( <div>
+  <nav className={`${isTopOfPage ? "" : "bg-secondary/30 backdrop-filter backdrop-blur-[2px] "} fixed z-30 w-full border-gray-200 dark:bg-gray-900 text-white`}>
   <div className="max-w-screen-xl w-5/6 flex flex-wrap items-center justify-between mx-auto p-4">
   <a href="/home" className="">
       <img src={logo} className="h-12 " alt="Logo" />     
@@ -20,10 +24,16 @@ const Header = ({isTopOfPage, setTopOfPage}) => {
   {/* ------------- Profile Menu  --------------*/}
 
   <div className="flex items-center md:order-2">
+      {/* ---------------- Cart Icon  -----------  */}
+    <div  onClick={() => setShow(!show)} className=" hover:shadow-xl rounded-full mr-3">
+            <img src={"https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/favorit-card.png.webp"} alt=""
+            className="w-10 h-10 cursor-pointer" />
+    </div>
+
       <button type="button" onCLinkck={()=>setProfileMenuToggle(!isProfileMenuToggle)}
        className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
         <span className="sr-only">Open user menu</span>
-        <img className="w-8 h-8 rounded-full" src={profilePhoto} alt="user photo" />
+        <img className="w-10 h-10 rounded-full" src={profilePhoto} alt="user photo" />
       </button>
       {/* <!----------- Profile Dropdown menu -----------> */}
       {isProfileMenuToggle && <div className="z-50 fixed top-12 w-2/6 right-3/9 md:right-2 bg-blue-200 bg-blur-lg my-4 text-base Linkst-none divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
@@ -33,7 +43,7 @@ const Header = ({isTopOfPage, setTopOfPage}) => {
         </div>
         <ul className="py-2" aria-labelledby="user-menu-button">
           <Link>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+            <a href="#" className="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
           </Link>
           <Link>
             <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
@@ -56,11 +66,11 @@ const Header = ({isTopOfPage, setTopOfPage}) => {
    
     { aboveMediumScreen ? (<div className="w-auto hidden md:flex order-1 items-center justify-between">
       <ul className="flex justify-between gap-8 font-sembold  ">
-        <Link to={"/home"} className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500 cursor-pointer">Home</Link>
-        <Link to={"/order"} className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500 cursor-pointer">Order</Link>
-        <Link to={"log-in"} className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500 cursor-pointer">Log In</Link>
-        <Link to={"/sign-up"} className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500 cursor-pointer">Sign Up</Link>
-        <Link to={"/about"} className="hover:font-semibold hover:text-yellow-400 hover:scale-110 text-secondary transition duration-500 cursor-pointer">About</Link>
+        <Link to={"/home"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Home</Link>
+        <Link to={"/order"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Order</Link>
+        <Link to={"log-in"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Log In</Link>
+        <Link to={"/sign-up"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Sign Up</Link>
+        <Link to={"/about"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">About</Link>
       </ul>
     </div>) : ( !isMenuToggle ?
     
@@ -119,8 +129,10 @@ const Header = ({isTopOfPage, setTopOfPage}) => {
     }
   
   </div>
-</nav>
 
+</nav>
+ {/* {show && <ShoppingCartModal show={show} setShow={setShow} />} */}
+</div>
   )
 }
 
