@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductsData from '../../data/ProductsData'
+import { Link } from 'react-router-dom'
 
 const Products = () => {
   
@@ -11,9 +12,11 @@ const Products = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
       
-      {ProductsData &&  ProductsData.map((product, index)=> <div key={index} className="group shadow-md hover:shadow-sm hover:shadow-primary relative mb-10 h-full max-w-[352px] cursor-pointer   ">
+      {ProductsData &&  ProductsData.map((product, index)=>
+      <Link to={`/purchase/${product.id}`}>
+      <div key={index} className="group shadow-md hover:shadow-sm hover:shadow-primary relative mb-10 h-full max-w-[352px] cursor-pointer   ">
           <img src={product.img} alt="" className="w-full h-96" />
-          <div className="absolute right-5 top-3 z-30 hover:shadow-xl rounded-full">
+          <div className="absolute right-5 top-3 z-20 hover:shadow-xl rounded-full">
             <img src={"https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/favorit-card.png.webp"} alt="" />
           </div>
           <div className="bg-white w-full pb-5">
@@ -42,7 +45,8 @@ const Products = () => {
             </div>
             <p className="text-center text-xl font-semibold mt-2">$ {product.price}</p>
           </div>
-        </div> )}
+        </div>
+        </Link> )}
         </div>
       </div>
     </div>

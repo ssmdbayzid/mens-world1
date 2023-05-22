@@ -10,10 +10,10 @@ const Header = ({isTopOfPage, setTopOfPage}) => {
 
   const aboveMediumScreen = useMediaQuery("(min-width: 768px)")
 
-  return (<nav className={`${isTopOfPage ? "" : "bg-secondary/5 backdrop-filter backdrop-blur-sm "} fixed z-30 w-full border-gray-200 dark:bg-gray-900`}>
+  return (<nav className={`${isTopOfPage ? "" : "bg-secondary/30 backdrop-filter backdrop-blur-[2px] "} fixed z-30 w-full border-gray-200 dark:bg-gray-900 text-white`}>
   <div className="max-w-screen-xl w-5/6 flex flex-wrap items-center justify-between mx-auto p-4">
-  <a href="https://flowbite.com/" className="">
-      <img src={logo} className="h-12 " alt="Flowbite Logo" />     
+  <a href="/home" className="">
+      <img src={logo} className="h-12 " alt="Logo" />     
   </a>
 
   {/* ------------- Profile Menu  --------------*/}
