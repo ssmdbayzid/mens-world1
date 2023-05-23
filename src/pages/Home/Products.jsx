@@ -3,8 +3,6 @@ import ProductsData from '../../data/ProductsData'
 import { Link } from 'react-router-dom'
 
 const Products = () => {
-  
-
   return (
     <div className="w-5/6 mx-auto my-16 ">
       <div className="text-4xl text-center ">
