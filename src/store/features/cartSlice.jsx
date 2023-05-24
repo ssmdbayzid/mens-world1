@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 
 const initialState = {
-constcartItems : localStorage.getItems("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [],
+constcartItems : localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [],
 cartTotalQty : 0,
 cartTotalAmount : 0
 }
@@ -11,7 +11,7 @@ cartTotalAmount : 0
 const cartSlice = createSlice({
     name: "cart",
     initialState,
-    reducer: {
+    reducers: {
         // ---------------- Add to cart - Start  ---------
 
         addToCart(state, action){
@@ -106,6 +106,6 @@ const cartSlice = createSlice({
     }
 });
 
-export const {addTocart, decreaseCartQty, removeCartItem, resetCartItems, getTotal} = cartSlice.action;
+export const {addToCart, decreaseCartQty, removeCartItem, resetCartItems, getTotal} = cartSlice.actions;
 
 export default cartSlice.reducer;

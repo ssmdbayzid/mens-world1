@@ -3,9 +3,9 @@ import React from 'react'
 const Testimonial = () => {
     return (
         <>
-            <div class="flex justify-center my-10  p-4">
+            <div class="flex justify-center my-20  p-4">
                 <div class="flex flex-col justify-center items-center ">
-                    <div class=" text-2xl md:text-5xl font-medium flex my-6">
+                    <div class=" text-2xl md:text-5xl font-medium flex my-8">
                         <div>Testimonials By </div>
                         <div class="text-cyan-400 mx-1"> Trusted</div>
                     </div>

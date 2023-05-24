@@ -1,3 +1,5 @@
+/*
+
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify";
 
@@ -108,4 +110,6 @@ const cartSlice = createSlice({
 
 export const {addTocart, decreaseCartQty, removeCartItem, resetCartItems, getTotal} = cartSlice.action;
 
-export default cartSlice.reducer;
+ export default cartSlice.reducer;
+
+ */
