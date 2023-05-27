@@ -67,7 +67,7 @@ const Header = ({isTopOfPage, setTopOfPage}) => {
     { aboveMediumScreen ? (<div className="w-auto hidden md:flex order-1 items-center justify-between">
       <ul className="flex justify-between gap-8 font-sembold  ">
         <Link to={"/home"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Home</Link>
-        <Link to={"/order"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Order</Link>
+        <Link to={"/shoppingCart"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Order</Link>
         <Link to={"log-in"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Log In</Link>
         <Link to={"/sign-up"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Sign Up</Link>
         <Link to={"/about"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">About</Link>
@@ -109,7 +109,7 @@ const Header = ({isTopOfPage, setTopOfPage}) => {
 <Link to={"/home"}>
 <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-300 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer">Home</a>
 </Link>
-<Link to={"order"}>
+<Link to={"/shoppingCart"}>
 <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-300 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer">Order</a>
 </Link>
 <Link to={"log-in"}>

@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 
 const initialState = {
-constcartItems : localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [],
+cartItems : localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [],
 cartTotalQty : 0,
 cartTotalAmount : 0
 }
