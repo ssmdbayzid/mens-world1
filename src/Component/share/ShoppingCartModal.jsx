@@ -14,7 +14,7 @@ function ShoppingCartModal({show, setShow}) {
     
     useEffect(()=>{
         dispatch(getTotals())
-    },[dispatch])
+    },[cart, dispatch])
 
     const handleRemoveCartItem = (item)=> {
         dispatch(removeCartItem(item))                     
@@ -25,11 +25,11 @@ function ShoppingCartModal({show, setShow}) {
         <>
         <div className="fixed right-0 top-0 bg-white w-full md:w-1/3 p-4 h-screen overflow-x-hidden overflow-y-auto text-secondary rounded-sm shadow-md ">
             <div>
-                <div className="flex justify-between items-center px-2">
-                    <p className="text-xl my-3">Shopping Cart</p> 
+                <div className="flex justify-between items-center px-2 my-5 ">
+                    <p className="text-xl font-semibold">Shopping Cart</p> 
                     <XMarkIcon
                     onClick={()=> setShow(!show)} 
-                    className="w-6 h-6 cursor-pointer hover:scale-125 duration-200 transition" />
+                    className="w-6 h-6 cursor-pointer hover:scale-125 duration-200 transition hover:text-red-600" />
 
                 </div>
                 <div className="gap-3">
@@ -62,7 +62,11 @@ function ShoppingCartModal({show, setShow}) {
                 <p>{cart.cartTotalAmount}</p>
                 </div>  
                 <p>Shipping and taxes calculated at checkout </p>
-                <button className="w-full py-2.5 bg-primary text-white mt-3">Checkout</button>
+                <Link to={"/shoppingCart"}
+                onClick={()=>setShow(!show)}
+                >
+                    <button className="w-full py-2.5 bg-primary text-white mt-3">Checkout</button> 
+                </Link>
                 <p className="flex mt-3 items-center flex-row justify-center">or &nbsp; 
                 <Link to={"/home"} onClick={()=>setShow(!show)}
                  className="text-primary flex items-center font-semibold cursor-pointer">Continue Shopping  &nbsp; < ArrowRightIcon className="w-5  "/>  </Link></p> 

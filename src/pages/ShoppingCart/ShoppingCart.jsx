@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Transition } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { ShoppingCartIcon } from '@heroicons/react/outline';
-import {ChevronRightIcon, XMarkIcon, ChevronLeftIcon} from "@heroicons/react/24/solid"
-import { removeCartItem } from '../../store/features/cartSlice';
+import {PlusIcon, MinusIcon, XMarkIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
+import { addToCart, decreaseCartQty, getTotals, removeCartItem } from '../../store/features/cartSlice';
+import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [increase, setIncreaseQty] = useState(1);
+  
 
 
 
@@ -16,41 +17,49 @@ const ShoppingCart = () => {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    let getCartItem = JSON.parse(localStorage.getItem("cartItems"))
+    dispatch(getTotals())    
+  }, [cart,dispatch])
 
-    if(getCartItem){
-      // setCartItems(getCartItem)
+      // ---------- Increase Cart Item --------
 
-      console.log(getCartItem[0].name)
-    }
-  }, [])
+      const handleIncreaseCartQty = (item) => {
+        dispatch(addToCart(item))
+      }
 
-  const handleIncreaseCartQty = (item) => {
-    setIncreaseQty(increase + 1)
+    // ---------- Decrease Cart Item --------
+
+  const handleDecreaseCartQty = (item) => {
+    dispatch(decreaseCartQty(item))
   }
 
+// ---------- Remove Item From Cart --------------
   const handleRemoveCartItem = (item) => {
     dispatch(removeCartItem(item))
   }
 
 
   return (
-    <div className="container mx-auto py-8 w-5/6 pt-16 h-screen">
-      <h1 className="text-2xl font-bold">Shopping Cart</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-5">
-      {cart && cart.cartItems.map((item)=> <div className="md:col-span-3" >
-        <div className="flex justify-between">
-          <div className="w-28 mr-4">
-            <img src={item.img} alt="itemImg" className="w-full" />
+    <div className="container mx-auto py-8 w-5/6 pt-16 h-full">
+      <h1 className="text-2xl font-bold text-center my-10">Shopping Cart</h1>
+      <div className="md:flex   ">
+        <div className="bg-white shadow-md md:w-full p-4 mt-10 rounded-sm md:m-4">
+      {cart && cart.cartItems.map((item)=> 
+        <div className="flex justify-between mb-3 border-b pb-5 group">
+          <div className="w-28 mr-4 border">
+            <img src={item.img} alt="itemImg" className="w-full scale-90 group-hover:scale-100" />
           </div>
           <div>
               <h1 className="text-xl font-semibold">{item.name}</h1>
-              <p>${item.price}</p>
+              <p>Price: ${item.price}</p>
 
               <div className="flex border items-center justify-center mt-10">
-              <ChevronLeftIcon className="w-6 cursor-pointer" onClick={()=>handleIncreaseCartQty(item)} />
-                <p className="text-lg mx-2">{increase}</p>
-                <ChevronRightIcon className="w-6 cursor-pointer" />
+              <MinusIcon
+              onClick={()=>handleDecreaseCartQty(item)}
+              className="w-6 cursor-pointer"  />
+                <p className="text-lg mx-2">{item.cartQuantity}</p>
+                <PlusIcon
+                onClick={()=>handleIncreaseCartQty(item)}
+                className="w-6 cursor-pointer" />
               </div>
             </div>
           <div className=''>
@@ -60,7 +69,29 @@ const ShoppingCart = () => {
               </div>
             </div>
         </div>
-      </div>)}
+     )}
+      
+      </div>
+       {/*  -------  --------  Shopping Cart Summary -------  -------  */}
+
+       <div className="bg-slate-200 w-full md:w-5/12 p-4 rounded h-full mt-3">
+        <h1 className="text-xl mb-5 font-bold">Order Summary</h1>
+        <div className="flex justify-between items-center mt-5">
+        <p className="text-lg font-semibold">Subtotal</p>
+        <p className="text-lg font-semibold">${(cart.cartTotalAmount).toFixed(2)}</p>
+        </div>
+        <div className="flex justify-between items-center mt-5">
+        <p className="text-lg font-semibold">Shipping Charge</p>
+        <p className="text-lg font-semibold">${ (cart.cartTotalAmount/100 * 2).toFixed(2) }</p>
+        </div>
+        <div className="flex justify-between items-center mt-20">
+        <p className="text-lg font-semibold">Total Price</p>
+        <p className="text-lg font-semibold">${(cart.cartTotalAmount + parseFloat((cart.cartTotalAmount/100 * 5))).toFixed(2) }</p>
+        </div>
+        <button className="w-full mt-5 py-2.5 bg-secondary text-white font-semibold ">Procees to checkout</button>
+
+       <Link className="flex justify-center mt-5" to={"/home"}>or  <span className="text-blue-600 font-bold flex items-center ml-2 ">Continue Shopping <ArrowRightIcon className="w-5 ml-2" /></span> </Link>
+       </div>
       </div> 
 
     </div>
