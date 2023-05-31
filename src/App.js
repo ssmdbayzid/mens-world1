@@ -4,7 +4,8 @@ import Header from "./Component/Header";
 import Home from "./pages/Home/Home";
 import Purchase from "./pages/Purchase/Purchase";
 import Routers from "./Routers/Routers";
-
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 function App() {  const [isTopOfPage, setIsTopOfPage] = useState(true)
 
   useEffect(()=>{
@@ -29,6 +30,8 @@ function App() {  const [isTopOfPage, setIsTopOfPage] = useState(true)
     <Footer
      className="w-5/6"
     />
+
+    <ToastContainer />
     </div>
   );
 }

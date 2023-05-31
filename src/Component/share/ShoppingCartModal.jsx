@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTotals, removeCartItem } from "../../store/features/cartSlice";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function ShoppingCartModal({show, setShow}) {
     const dispatch = useDispatch()
@@ -15,14 +16,10 @@ function ShoppingCartModal({show, setShow}) {
         dispatch(getTotals())
     },[dispatch])
 
-    const handleRemoveCartItem = (id)=> {
-        console.log(id)
-        dispatch(removeCartItem(id))
+    const handleRemoveCartItem = (item)=> {
+        dispatch(removeCartItem(item))                     
     }   
 
-const navigate = useNavigate()
-
-    // const subTotal = useSelector((state)=> state.cartAmount)
 
     return (
         <>
@@ -52,7 +49,7 @@ const navigate = useNavigate()
                         <div>
                             <p className="font-bold mb-8">${item.price * item.cartQuantity}.00</p>
                             <p
-                            onClick={()=> handleRemoveCartItem(item.id)}
+                            onClick={()=> handleRemoveCartItem(item)}
                             className="mt-auto text-red-600 cursor-pointer">remove</p>
                             </div>
                         </div>)
@@ -66,7 +63,9 @@ const navigate = useNavigate()
                 </div>  
                 <p>Shipping and taxes calculated at checkout </p>
                 <button className="w-full py-2.5 bg-primary text-white mt-3">Checkout</button>
-                <p className="flex mt-3 items-center flex-row justify-center">or &nbsp; <Link to={"/home"} className="text-primary flex items-center font-semibold cursor-pointer ">Continue Shopping  &nbsp; < ArrowRightIcon className="w-5  "/>  </Link></p> 
+                <p className="flex mt-3 items-center flex-row justify-center">or &nbsp; 
+                <Link to={"/home"} onClick={()=>setShow(!show)}
+                 className="text-primary flex items-center font-semibold cursor-pointer">Continue Shopping  &nbsp; < ArrowRightIcon className="w-5  "/>  </Link></p> 
 
                 </div>
             </div>

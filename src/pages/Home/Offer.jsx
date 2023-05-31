@@ -6,13 +6,13 @@ const Offer = () => {
     return (
         <div className={`w-5/6 mx-auto `}>
 
-            {/* <div class="flex items-center justify-center bg-gradient-to-r from-gray-900 via-gray-500 to-gray-900 "> */}
-            <div class="flex items-center justify-center bg-center bg-[url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')] grayscale-[50%] bg-no-repeat bg-cover  ">
-                <div class="flex-col items-center justify-center pt-20 text-white bg-secondary/30 w-full">
+            {/* <div className="flex items-center justify-center bg-gradient-to-r from-gray-900 via-gray-500 to-gray-900 "> */}
+            <div className="flex items-center justify-center bg-center bg-[url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')] grayscale-[50%] bg-no-repeat bg-cover  ">
+                <div className="flex-col items-center justify-center pt-20 text-white bg-secondary/30 w-full">
                     
-                        <div class="text-center flex items-center justify-center  text-2xl  font-bold">Trending Collectionfor Fashion</div>
+                        <div className="text-center flex items-center justify-center  text-2xl  font-bold">Trending Collectionfor Fashion</div>
                     
-                    <div class="mb-5 mx-auto text-center flex items-center justify-center m-10 text-4xl font-bold"><span className="text-yellow-200 animate-bounce">Up to 70% Off</span>
+                    <div className="mb-5 mx-auto text-center flex items-center justify-center m-10 text-4xl font-bold"><span className="text-yellow-200 animate-bounce">Up to 70% Off</span>
                         All T-shirt & Accessories
                     </div>
 
