@@ -1,11 +1,1 @@
-import React from 'react'
-
-const productAPI = () => {
-  return (
-    <div>productAPI
-        <p></p>
-    </div>
-  )
-}
-
-export default productAPI
+import {createApi} from "@redux"
