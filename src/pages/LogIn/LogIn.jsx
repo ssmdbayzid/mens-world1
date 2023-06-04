@@ -1,9 +1,34 @@
 import React from 'react'
-import bg from '../../assets/cover.avif'
+import {useSignInWithGoogle} from 'react-firebase-hooks/auth'
 import logo from '../../assets/logo.png'
-import {LockClosedIcon, goo} from '@heroicons/react/24/solid'
+import {LockClosedIcon,} from '@heroicons/react/24/solid'
+import auth from '../../firebase.init'
+
 
 const LogIn = () => {
+
+  const [signInWithGoogle,user, loading, error] = useSignInWithGoogle(auth)
+
+  const googleLogIn = e => {
+    
+    console.log("click on google link function")
+    signInWithGoogle()
+    // e.preventDefault()
+  }
+
+  if(loading){
+    <p className="absolute top-1/2 left-1/2 text-xl">Loading </p>
+  }
+
+  if(user){
+    console.log(user.user.email)
+  }
+
+  if(error){
+  <p className="text-red-500 my-1">Error: {error.message}</p>
+  }
+
+
   
   return (
     <div style={{backgroundImage:`url('https://img.freepik.com/premium-photo/fashionable-woman-hat-long-dress_137441-2091.jpg')`}} className={`h-screen  bg-cover bg-center bg-no-repeat flex items-center justify-center`}>
@@ -19,6 +44,8 @@ const LogIn = () => {
           <form action="">
             <input type="text" name="username" id="" className="w-full rounded-lg  border mb-3" placeholder="Username" />
             <input type="password" name="password" id="" className="w-full rounded-lg  border mb-3" placeholder="Password" />
+            {error}
+
 
             <button type='submit' className="bg-primary w-full py-2.5  rounded-lg text-white text-xl">Log In</button>
           </form>
@@ -30,7 +57,7 @@ const LogIn = () => {
         {/* Third party authentication */}
 
         <div className="flex justify-center gap-5 mt-5">
-          <div className=" cursor-pointer hover:scale-105 py-1 px-2 border border-white bg-secondary flex items-center gap-2 text-white">
+          <div onClick={()=>googleLogIn()} className=" cursor-pointer hover:scale-105 py-1 px-2 border border-white bg-secondary flex items-center gap-2 text-white">
           <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 488 512"><path fill='white' d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg>
             <p>Google</p> 
           </div>

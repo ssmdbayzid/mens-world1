@@ -1,16 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import bgImg from '../assets/cover.avif'
 import profilePhoto from '../assets/pp_photo.jpg'
 import useMediaQuery from '../hooks/useMediaQuery'
 import logo from '../assets/mensLogo.png'
 import { Link } from 'react-router-dom'
 import ShoppingCartModal from './share/ShoppingCartModal'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import auth from '../firebase.init'
+import { signOut } from 'firebase/auth'
 
 const Header = ({ isTopOfPage, setTopOfPage }) => {
   const [isMenuToggle, setMenuToggle] = useState(false)
   const [isProfileMenuToggle, setProfileMenuToggle] = useState(false)
   const [show, setShow] = useState(false);
+  const [user] = useAuthState(auth);
+  const [userImg, setUserImg] = useState("")
 
+useEffect(()=>{
+  if(user){
+    console.log(user)
+    setUserImg(user.photoURL)
+  }
+},[])
+
+const handGoogleLogInSignOut = ()=> {
+    signOut(auth)
+}
 
   const aboveMediumScreen = useMediaQuery("(min-width: 768px)")
 
@@ -33,16 +48,16 @@ const Header = ({ isTopOfPage, setTopOfPage }) => {
             {show && <ShoppingCartModal show={show} setShow={setShow} />}
           </div>
 
-          <button type="button" onClick={() => setProfileMenuToggle(!isProfileMenuToggle)}
+          {user && <button type="button" onClick={() => setProfileMenuToggle(!isProfileMenuToggle)}
             className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
             <span className="sr-only">Open user menu</span>
-            <img className="w-10 h-10 rounded-full" src={profilePhoto} alt="user photo" />
-          </button>
+            <img className="w-10 h-10 rounded-full" src={userImg} alt="user photo" />
+          </button>}
           {/* <!----------- Profile Dropdown menu -----------> */}
           {isProfileMenuToggle && <div className="z-50 fixed top-12 w-2/6 right-3/9 md:right-2 bg-blue-200 bg-blur-lg my-4 text-base Linkst-none divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
             <div className="px-4 py-3">
-              <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-              <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+              <span className="block text-sm text-gray-900 dark:text-white">{user.displayName}</span>
+              <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{user.email}</span>
             </div>
             <ul className="py-2" aria-labelledby="user-menu-button">
               <Link>
@@ -54,7 +69,7 @@ const Header = ({ isTopOfPage, setTopOfPage }) => {
               <Link>
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
               </Link>
-              <Link>
+              <Link onClick={()=> handGoogleLogInSignOut()}>
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
               </Link>
             </ul>
