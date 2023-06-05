@@ -18,10 +18,10 @@ const Header = ({ isTopOfPage, setTopOfPage }) => {
 
 useEffect(()=>{
   if(user){
-    console.log(user)
+    console.log(user.photoURL)
     setUserImg(user.photoURL)
   }
-},[])
+},[user])
 
 const handGoogleLogInSignOut = ()=> {
     signOut(auth)
@@ -51,10 +51,11 @@ const handGoogleLogInSignOut = ()=> {
           {user && <button type="button" onClick={() => setProfileMenuToggle(!isProfileMenuToggle)}
             className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
             <span className="sr-only">Open user menu</span>
-            <img className="w-10 h-10 rounded-full" src={userImg} alt="user photo" />
+           {userImg && <img className="w-10 h-10 rounded-full" src={userImg} alt="userPhoto" />}
           </button>}
           {/* <!----------- Profile Dropdown menu -----------> */}
-          {isProfileMenuToggle && <div className="z-50 fixed top-12 w-2/6 right-3/9 md:right-2 bg-blue-200 bg-blur-lg my-4 text-base Linkst-none divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+
+          {isProfileMenuToggle && user && <div className="z-50 fixed top-12 w-2/6 right-3/9 md:right-2 bg-blue-200 bg-blur-lg my-4 text-base Linkst-none divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
             <div className="px-4 py-3">
               <span className="block text-sm text-gray-900 dark:text-white">{user.displayName}</span>
               <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{user.email}</span>
@@ -73,7 +74,7 @@ const handGoogleLogInSignOut = ()=> {
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
               </Link>
             </ul>
-          </div>}
+          </div>} 
 
           {/* Main Menu Button  */}
 
@@ -86,8 +87,8 @@ const handGoogleLogInSignOut = ()=> {
           <ul className="flex justify-between gap-8 font-sembold  ">
             <Link to={"/home"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Home</Link>
             <Link to={"/shoppingCart"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Order</Link>
-            <Link to={"log-in"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Log In</Link>
-            <Link to={"/sign-up"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Sign Up</Link>
+            {!user && <Link to={"log-in"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Log In</Link>}
+            {!user && <Link to={"/sign-up"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Sign Up</Link>}
             <Link to={"/about"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">About</Link>
           </ul>
         </div>) : (!isMenuToggle ?
@@ -130,12 +131,12 @@ const handGoogleLogInSignOut = ()=> {
                 <Link to={"/shoppingCart"}>
                   <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-300 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer">Order</a>
                 </Link>
-                <Link to={"log-in"}>
+               {!user && <Link to={"log-in"}>
                   <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-300 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer">Log In</a>
-                </Link>
-                <Link to={"sign-up"}>
+                </Link>}
+                {!user && <Link to={"sign-up"}>
                   <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-300 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer">Sign Up</a>
-                </Link>
+                </Link>}
                 <Link to={"/about"}>
                   <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-300 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer">About</a>
                 </Link>
