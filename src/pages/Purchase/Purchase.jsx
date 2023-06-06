@@ -12,10 +12,11 @@ const Purchase = () => {
 
     // const porchaseProduct = ProductsData.filter((product, index) => {return product.id === id} )
    useEffect(()=>{
+    
     if(id){
       const porchaseProduct = ProductsData.filter((item)=> item.id == id)
       setProduct(porchaseProduct[0])
-      console.log(porchaseProduct[0].description)
+
     }
    },[id])
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {useSignInWithGoogle, useSignInWithGithub} from 'react-firebase-hooks/auth'
+import {useSignInWithGoogle, useSignInWithGithub, useAuthState} from 'react-firebase-hooks/auth'
 import logo from '../../assets/logo.png'
 import {LockClosedIcon,} from '@heroicons/react/24/solid'
 import auth from '../../firebase.init'
@@ -10,6 +10,7 @@ const LogIn = () => {
 
   const [signInWithGoogle,user, loading, error] = useSignInWithGoogle(auth)
   const [signInWithGithub, user2, loading2, error2] = useSignInWithGithub(auth)
+  const [user3] = useAuthState(auth)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -37,7 +38,7 @@ const LogIn = () => {
     <p className="absolute top-1/2 left-1/2 text-xl">Loading </p>
   }
 
-  if(user|| user2){
+  if(user|| user2|| user3){
     navigate(from, {replace: true})
   }
 
