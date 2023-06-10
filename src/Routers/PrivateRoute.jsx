@@ -1,4 +1,4 @@
-import { Purchase, ShoppingCart } from "../pages";
+import { AllUsers, Dashboard, Purchase, ShoppingCart } from "../pages";
 
 const PrivateRoute = [
     {
@@ -10,6 +10,16 @@ const PrivateRoute = [
         name:"ShoppingCart",
         path: "/shoppingCart",
         component: ShoppingCart,
+    },
+    {
+        name:"Dashboard",
+        path:"/dashboard",
+        component: Dashboard,
+    },
+    {
+        name:"AllUsers",
+        path: "/allusers",
+        component: AllUsers,
     },
 ]
 
