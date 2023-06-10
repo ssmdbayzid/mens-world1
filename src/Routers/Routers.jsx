@@ -1,32 +1,26 @@
 import { Route, Routes } from "react-router"
-import publicRoute from "./PublicRoute"
-import PrivateRoute from "./PrivateRoute"
-import RequireAuth from "../pages/RequireAuth/RequireAuth"
-import { Purchase, ShoppingCart } from "../pages"
+
+// import publicRoute from "./PublicRoute"
+// import PrivateRoute from "./PrivateRoute"
+// import RequireAuth from "../pages/RequireAuth/RequireAuth"
+
+import { AllUsers, Dashboard, Home, Log_In, Purchase, ShoppingCart, Sign_Up } from "../pages"
 
 
 const Routers = () => {
     return (
         <Routes>
-             {/*!---------- Public Route-------  */}
-             {
-                publicRoute.map((route, index)=>
-                <Route key={index} path={route.path} element={< route.component/>} />)
-             }
+             <Route path="/" element={< Home />} />
+             <Route path="home" element={< Home />} />
+             <Route path="log-in" element={< Log_In />} />
+             <Route path="sign-up" element={< Sign_Up />} />
+             <Route path="purchase/:id" element={< Purchase />} />
+             <Route path="shoppingCart" element={< ShoppingCart />} />
+             <Route path="dashboard" element={< Dashboard />}>
+             <Route path="dashboard/all-user" element={< AllUsers />} />
+             <Route path="dashboard/products" element={< AllUsers />} />
+             </Route>
 
-
-             {/* -------------- Private Route ------------- */}
-             
-             {/* {
-                PrivateRoute.map((route, index)=> <Route key={index} path={route.path} element={<RequireAuth>
-                <route.component /> </RequireAuth>
-            } />)
-             } */}
-             {
-                PrivateRoute.map((route, index)=> <Route key={index} path={route.path} 
-                element={<route.component></route.component>} />)
-             }
-             
         </Routes>
     )
 }

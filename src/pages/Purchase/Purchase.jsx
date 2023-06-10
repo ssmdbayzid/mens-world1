@@ -10,7 +10,6 @@ const Purchase = () => {
   const [product, setProduct] = useState(null)
 
 
-    // const porchaseProduct = ProductsData.filter((product, index) => {return product.id === id} )
    useEffect(()=>{
     
     if(id){
