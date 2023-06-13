@@ -7,7 +7,7 @@ const AllUser = () => {
 
 
     if(data){
-        console.log(data.users)
+        console.log(data)
     }
   return (
   
