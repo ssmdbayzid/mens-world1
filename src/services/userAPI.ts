@@ -16,16 +16,17 @@ export const contactsApi = createApi({
         },
     
     }),
-    endpoints: (builders)=> {
+/*    endpoints: (builders)=> {
         users: builders.query({
             query: ()=> "users"
         })
     },
-    // endpoints: (builder) => {
-    //     users: builder.query({
-    //         query: () => "users",
-    //     }),
-    // },    
+*/
+    endpoints: (builder) => {
+        users: builder.query({
+            query: () => "users",
+        }),
+    },    
 })
 
 

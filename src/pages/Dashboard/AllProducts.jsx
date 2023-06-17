@@ -1,12 +1,25 @@
-import React from 'react'
-import { useProductsQuery } from '../../services/productAPI.ts'
+import React, { useEffect } from 'react'
+// import { useProductsQuery } from '../../services/productAPI.ts'
+import { useDispatch, useSelector } from 'react-redux'
+import { productActions } from '../../services/productSlice.js'
 
 const AllProducts = () => {
-  const {data, error, isLoading, isSuccess} = useProductsQuery()
+//   const {data, error, isLoading, isSuccess} = useProductsQuery()
 
-  if(data){
-    console.log(data)
+  const products1 = useSelector((state)=> state.products)
+    
+  if(products1){
+    console.log(products1)
   }
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(productActions.fetchProducts())
+    },[dispatch])
+
+
+//   if(data){
+//     console.log(data)
+//   }
   return (
     <div>
     
