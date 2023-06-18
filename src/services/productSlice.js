@@ -3,11 +3,11 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios'
 
 // Define api API endpoint URL
-const apiURL = "http://localhost:5000/products/"
+const apiURL = "https://dummyjson.com/"
 
 // Fetch product from backend
 
-export const fetchProducts = createAsyncThunk("products/", async ()=> {
+export const fetchProducts = createAsyncThunk("products", async ()=> {
     const response = await axios.get(apiURL);
     return response.data;
 });

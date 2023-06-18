@@ -7,10 +7,7 @@ const AllProducts = () => {
 //   const {data, error, isLoading, isSuccess} = useProductsQuery()
 
   const products1 = useSelector((state)=> state.products)
-    
-  if(products1){
-    console.log(products1)
-  }
+
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(productActions.fetchProducts())

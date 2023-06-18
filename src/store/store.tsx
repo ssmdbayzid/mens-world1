@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import cartReducer from "./features/cartSlice"
-import  {contactsApi}  from "../services/userAPI";
+import  {usersApi}  from "../services/userAPI.ts";
 // import { productApi } from "../services/productAPI.js";
 
 
@@ -9,10 +9,10 @@ import  {contactsApi}  from "../services/userAPI";
 const store = configureStore({
     reducer: {
         cart: cartReducer,
-        [contactsApi.reducerPath] : contactsApi.reducer,
+        [usersApi.reducerPath] : usersApi.reducer,
         // [productApi.reducerPath] : productApi.reducer,
     },    
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(contactsApi.middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(usersApi.middleware)
 })
 
 export default store;
