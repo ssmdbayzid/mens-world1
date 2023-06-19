@@ -1,17 +1,34 @@
 import React from 'react'
-import { useUsersQuery } from '../../services/userAPI.ts'
+import { useDeleteUserMutation, useUsersQuery } from '../../services/userAPI.ts'
 import { Link } from 'react-router-dom';
+import { toast } from "react-toastify";
+
 
 const AllUser = () => {
     const {data, error, isLoading, isSuccess} = useUsersQuery();
+    const [deleteUser] = useDeleteUserMutation()
 
+    if(error){
+        return toast.error("Some thing error")
+    }
 
     if(data){
         console.log(data)
     }
+
+    const handleDeleteUser = async (id) =>{
+        console.log(id)
+        if(window.confirm("Are You Sure!! Want to Delete This User")){
+            await deleteUser(id)
+
+            toast.error("User Delete Successfully", {
+                position:"top-left"
+            })
+        }
+    }
   return (
   
-<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div className="relative h-full overflow-x-auto shadow-md sm:rounded-lg">
     <div className="flex items-center justify-between py-4 bg-white dark:bg-gray-800">
         <div>
             <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
@@ -74,6 +91,7 @@ const AllUser = () => {
                     <div className="flex items-center">
                         <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                         <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
+                        {index + 1}
                     </div>
                 </td>
                 <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
@@ -89,7 +107,9 @@ const AllUser = () => {
                 <td className="px-6 py-4">
                 <Link to={`/user/:${user.id}`} href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" className="font-medium text-green-600 dark:text-blue-500 hover:underline">Edit user</Link>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4"
+                onClick={()=> handleDeleteUser(user._id)}
+                >
 
                     <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" className="font-medium text-red-600 dark:text-blue-500 hover:underline">Remove user</a>
                 </td>

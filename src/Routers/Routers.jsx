@@ -5,7 +5,7 @@ import { Route, Routes} from "react-router"
 // import PrivateRoute from "./PrivateRoute"
 // import RequireAuth from "../pages/RequireAuth/RequireAuth"
 
-import { AllProducts, AllUsers, Dashboard, Home, Log_In, Purchase, ShoppingCart, Sign_Up } from "../pages"
+import { AllProducts, AllUsers, Dashboard, Home, Log_In, Purchase, ShoppingCart, Sign_Up, UpdateUser } from "../pages"
 
 
 const Routers = () => {
@@ -21,6 +21,7 @@ const Routers = () => {
              <Route path="/dashboard" element={< Dashboard/>}>
                 <Route path="/dashboard/users" element={<AllUsers />}/>   
                 <Route path="/dashboard/products" element={<AllProducts />}/>   
+                <Route path="/dashboard/user/:userId" element={<UpdateUser />}/>   
                 {/* <Route path="/dashboardupdate-product" element={<AllProducts />}/>    */}
              </Route>
 
