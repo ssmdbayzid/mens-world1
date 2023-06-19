@@ -21,7 +21,7 @@ const Routers = () => {
              <Route path="/dashboard" element={< Dashboard/>}>
                 <Route path="/dashboard/users" element={<AllUsers />}/>   
                 <Route path="/dashboard/products" element={<AllProducts />}/>   
-                <Route path="/dashboard/user/:userId" element={<UpdateUser />}/>   
+                <Route path="/dashboard/users/:userId" element={<UpdateUser />}/>   
                 {/* <Route path="/dashboardupdate-product" element={<AllProducts />}/>    */}
              </Route>
 

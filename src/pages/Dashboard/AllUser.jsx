@@ -105,7 +105,7 @@ const AllUser = () => {
                     React Developer
                 </td>
                 <td className="px-6 py-4">
-                <Link to={`/user/:${user.id}`} href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" className="font-medium text-green-600 dark:text-blue-500 hover:underline">Edit user</Link>
+                <Link to={`${user._id}`} href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" className="font-medium text-green-600 dark:text-blue-500 hover:underline">Edit user</Link>
                 </td>
                 <td className="px-6 py-4"
                 onClick={()=> handleDeleteUser(user._id)}

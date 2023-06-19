@@ -11,6 +11,10 @@ export const usersApi = createApi({
             query: ()=> "/users",
             providesTags: ["User"],
         }),
+        user:builders.query<User, void>({
+            query: (userId)=> `/users/${userId}`,
+            providesTags: ["User"]
+        }),
         addUser: builders.mutation<{}, User>({
             query: (user)=> ({
                 url: "/users",
@@ -25,9 +29,10 @@ export const usersApi = createApi({
                 method: "DELETE",    
             }),
             invalidatesTags: ["User"]
-        })
+        }),
+     
     }),
 })
 
 
-export const {useUsersQuery, useAddUserMutation, useDeleteUserMutation } = usersApi;
+export const {useUsersQuery, useAddUserMutation, useDeleteUserMutation, useUserQuery } = usersApi;
