@@ -1,23 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import { useUserQuery } from '../../services/userAPI.ts';
 
+const initialState = {
+  username: "",
+  email: "",
+  profile: "",
+}
+
 const UserUpdatePage = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [formValue, setFormValue] = useState(initialState)
   const {userId}  = useParams()
-
-  const initialState = {
-    username: "",
-    email: "",
-    profile: "",
-  }
   const {data, error, isFetching, isLoading } = useUserQuery(userId)
+  
+  const {username, email, profile} = formValue;
 
-  if(data){
-    console.log(data)
-  }
+  useEffect(()=> {
+    if(userId){
+      setFormValue({...data})
+    }
+  },[userId])
+
+
 
   const onSubmit = (data) => {
     // Perform update logic here
@@ -31,11 +38,13 @@ const UserUpdatePage = () => {
         <h2 className="text-2xl font-bold my-2 text-center uppercase">Update User</h2>
         <div className="mb-4">
           <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">
-            Name
+            Username
           </label>
           <input
             type="text"
             id="name"
+            value={username}
+            // onChange={ formValue.username == email.target.value}
             {...register('name', { required: true })}
             className="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
@@ -48,6 +57,7 @@ const UserUpdatePage = () => {
           <input
             type="email"
             id="email"
+            value={email}
             {...register('email', { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })}
             className="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
@@ -60,6 +70,7 @@ const UserUpdatePage = () => {
           <input
             type="password"
             id="password"
+            value={profile}
             {...register('password', { required: true, minLength: 6 })}
             className="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
