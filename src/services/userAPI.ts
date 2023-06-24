@@ -7,14 +7,31 @@ export const usersApi = createApi({
     tagTypes: ["User"],
     baseQuery: fetchBaseQuery({baseUrl: "http://localhost:5000/"}),
     endpoints: (builders)=> ({
+
+        //*----------- Get Users-----------
         users: builders.query<User[], void>({
             query: ()=> "/users",
             providesTags: ["User"],
         }),
+
+        //*----------- Get User-----------
+
         user:builders.query<User, void>({
             query: (userId)=> `/users/${userId}`,
             providesTags: ["User"]
         }),
+
+        //*----------- Update User-----------
+
+        updateUser: builders.mutation<void, User>({
+            query: ({id, ...rest })=> ({
+                url: `/users/${id}`,
+                method: "PUT",
+                body: rest,
+            })
+        }),
+        //*----------- Add User-----------
+
         addUser: builders.mutation<{}, User>({
             query: (user)=> ({
                 url: "/users",
@@ -35,4 +52,4 @@ export const usersApi = createApi({
 })
 
 
-export const {useUsersQuery, useAddUserMutation, useDeleteUserMutation, useUserQuery } = usersApi;
+export const {useUsersQuery, useAddUserMutation, useDeleteUserMutation, useUserQuery, useUpdateUserMutation } = usersApi;
