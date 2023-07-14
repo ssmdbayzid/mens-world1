@@ -24,8 +24,8 @@ export const usersApi = createApi({
         //*----------- Update User-----------
 
         updateUser: builders.mutation<void, User>({
-            query: ({id, ...rest })=> ({
-                url: `/users/${id}`,
+            query: ({userId, ...rest })=> ({
+                url: `/users/${userId}`,
                 method: "PUT",
                 body: rest,
             })
@@ -52,4 +52,10 @@ export const usersApi = createApi({
 })
 
 
-export const {useUsersQuery, useAddUserMutation, useDeleteUserMutation, useUserQuery, useUpdateUserMutation } = usersApi;
+export const {
+    useUsersQuery,
+    useAddUserMutation,
+    useDeleteUserMutation,
+    useUserQuery,
+    useUpdateUserMutation
+ } = usersApi;

@@ -3,13 +3,13 @@ import React from 'react'
 
 
 const Banner = () => {
-  const bg = "https://images.pexels.com/photos/5917850/pexels-photo-5917850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  const bg = "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
   return (
     <section id='home' className="h-[100vh]">
      
-      <img src={bg} alt="" className="w-full h-[100vh]  bg-cover" />
-      <div className="absolute top-0 left-0  h-[100vh] w-full bg-slate-500/40  ">
-      <div className="justify-center items-center h-full p-8 flex flex-col ">
+      {/* <img  alt="" className="w-full h-full bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80')]" /> */}
+      <div className="absolute top-20 left-0  h-full w-full bg-slate-500/20  bg-[url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80')] bg-no-repeat bg-cover bg-center">
+      <div className="justify-center items-center h-full p-8 flex flex-col bg-slate-300/20 ">
 
         <motion.p 
         initial="hidden"

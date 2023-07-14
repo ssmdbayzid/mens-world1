@@ -1,6 +1,6 @@
 export interface User {
-    id?: String,
+    userId?: String,
     username: String,
-    email:string,
+    email: String,
     profile: String,
 }

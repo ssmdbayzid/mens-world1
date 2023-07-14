@@ -30,7 +30,7 @@ const handGoogleLogInSignOut = ()=> {
   const aboveMediumScreen = useMediaQuery("(min-width: 768px)")
 
   return (<div>
-    <nav className={`${isTopOfPage ? "" : "bg-secondary/30 backdrop-filter backdrop-blur-[2px] "} fixed z-30 w-full border-gray-200 dark:bg-gray-900 text-white`}>
+    <nav className={`${isTopOfPage ? "bg-white" : "bg-slate-200 backdrop-filter backdrop-blur-[2px] "} fixed z-30 w-full border-gray-200 dark:bg-gray-900 text-white`}>
       <div className="max-w-screen-xl w-5/6 flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/home" className="">
           <img src={logo} className="h-12 " alt="Logo" />
@@ -62,18 +62,18 @@ const handGoogleLogInSignOut = ()=> {
             </div>
             <ul className="py-2" aria-labelledby="user-menu-button">
               <Link to={"/dashboard"}>
-                <a href="#" className="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard                              
+                <a href="#" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard                              
                 </a>
                 
               </Link>
               <Link>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                <a href="#" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
               </Link>
               <Link>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                <a href="#" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
               </Link>
               <Link onClick={()=> handGoogleLogInSignOut()}>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                <a href="#" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
               </Link>
             </ul>
           </div>} 
@@ -87,11 +87,11 @@ const handGoogleLogInSignOut = ()=> {
 
         {aboveMediumScreen ? (<div className="w-auto hidden md:flex order-1 items-center justify-between">
           <ul className="flex justify-between gap-8 font-sembold  ">
-            <Link to={"/home"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Home</Link>
-            <Link to={"/shoppingCart"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Order</Link>
-            {!user && <Link to={"log-in"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Log In</Link>}
-            {!user && <Link to={"/sign-up"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">Sign Up</Link>}
-            <Link to={"/about"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-blue-600 transition duration-500 cursor-pointer">About</Link>
+            <Link to={"/home"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-primary  text-lg transition duration-500 cursor-pointer">Home</Link>
+            <Link to={"/shoppingCart"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-primary  text-lg transition duration-500 cursor-pointer">Order</Link>
+            {!user && <Link to={"log-in"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-primary  text-lg transition duration-500 cursor-pointer">Log In</Link>}
+            {!user && <Link to={"/sign-up"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-primary  text-lg transition duration-500 cursor-pointer">Sign Up</Link>}
+            <Link to={"/about"} className="hover:font-semibold hover:text-blue-800 hover:scale-110 text-primary  text-lg transition duration-500 cursor-pointer">About</Link>
           </ul>
         </div>) : (!isMenuToggle ?
 

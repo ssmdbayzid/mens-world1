@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router';
-import { useUserQuery } from '../../services/userAPI.ts';
+import { useNavigate, useParams } from 'react-router';
+import { useUpdateUserMutation, useUserQuery } from '../../services/userAPI.ts';
+import { PickerOverlay } from 'filestack-react';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const initialState = {
   username: "",
@@ -12,42 +15,112 @@ const initialState = {
 const UserUpdatePage = () => {
 
   const { userId } = useParams()
-  const [userName, setUserName] = useState("")
-  const [userEmail, setUserEmail] = useState("")
-  const [userProfile, setUserProfile] = useState("")
+  const [username, setUserName] = useState("")
+  const [email, setUserEmail] = useState("")
+  const [profile, setUserProfile] = useState("")
+  const [updateUser, result] = useUpdateUserMutation()
+  const [image, setImg] = useState("")
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [formValue, setFormValue] = useState(initialState)
+  // const [formValue, setFormValue] = useState(initialState)
   const { data, error, isFetching, isLoading } = useUserQuery(userId)
+  // const {username, email, profile} = formValue;
 
 
-  const { username, email, profile } = formValue;
-
+  
   useEffect(() => {
-    if (userId) {
+    if (userId && data) {      
       const { username, email, profile } = data;
       setUserName(username)
       setUserEmail(email)
-      setUserProfile(profile)
+      setUserProfile(profile)      
     }
+
   }, [userId, data])
+  const navigate = useNavigate()
 
-
-  if(userProfile){
-    console.log(userProfile)
+  if(isLoading){
+    return <div>Loading.... </div>
   }
 
 
-  const onSubmit = (data) => {
-    // Perform update logic here
-    console.log(data);
+  const onSubmit = async (e) => {
+    
+    // event.preventDefault()
+    // console.log(im)
+    const formData = new FormData()
+
+    formData.append('image', image)
+    
+    // const url = `https://api.imgbb.com/1/upload&key=${process.env.REACT_APP_ImageBB_Key}`
+
+
+    
+    await fetch('https://api.imgbb.com/1/upload&key=e3fed504b0c005f082c1c2d6796ebc76', {
+      method: "POST",
+      body: formData,
+    })
+    .then((res)=> res.json())
+    .then(result => {
+      console.log("Image bb", result)
+    })
+
+
+    /*
+    const data = {
+      userId,
+      username,
+      email,
+      profile
+    }
+    await updateUser(data)
+    if(result){
+      console.log(result)
+    }
+    navigate("/dashboard/users")
+    toast.success("Update user successfully")
+    */
   };
 
+const imageUpload = async e =>{
+  
+  const client = filestack.init(process.env.REACT_APP_Filestack_Key);
+  const img = e.target.files[0]
+
+  client.upload(img)
+  .then((res)=> console.log(res))
+  .catch((error)=> console.log(error))
+
+
+
+
+
+
+
+
+/*
+------------ for Image BB -----------------
+  const formData = new FormData()
+
+  formData.append('image', img)
+
+  await fetch('https://api.imgbb.com/1/upload&key=15abb5d6d10c5792735d187ebb3d95b0"', {
+    method: "POST",
+    body: formData,
+  })
+  .then((res)=> res.json())
+  .then(result => {
+    console.log("Image bb", result)
+  })
+  // .then((error)=> {console.log(error)})
+  
+  */
+}
 
   return (
     <div className="flex justify-center h-screen min-w-full items-center ">
       <form className="md:w-1/3 w-2/3  bg-white rounded shadow p-8" onSubmit={handleSubmit(onSubmit)}>
-        <img src={userProfile} alt="" srcset="" className="w-20 h-20 rounded-md mx-auto " />
+        <img src={profile} alt="" srcset="" className="w-20 h-20 rounded-md mx-auto " />
         <h2 className="text-2xl font-bold my-2 text-center uppercase">Update User</h2>
         <div className="mb-4">
           <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">
@@ -56,8 +129,8 @@ const UserUpdatePage = () => {
           <input
             type="text"
             id="name"
-            value={userName}
-            // onChange={(e)=> {console.log(e.target.value)}}
+            value={username}
+            
             {...register('name', { required: true, onChange: (e)=> {setUserName(e.target.value)}},)}
             className="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
@@ -70,7 +143,7 @@ const UserUpdatePage = () => {
           <input
             type="email"
             id="email"
-            value={userEmail}
+            value={email}
             {...register('email', { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, onChange: (e)=> {setUserEmail(e.target.value)} })}
             className="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
@@ -79,7 +152,8 @@ const UserUpdatePage = () => {
         <div className="mb-6">
           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="small_size">Upload Img</label>
           <input
-           {...register('profile', { required: true, onChange: (e)=> {console.log(e.target.files[0])}},)}
+           {...register('profile', { required: true, onChange: (e)=> {
+            imageUpload(e)}},)}
           class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file" />
           
         </div>

@@ -3,8 +3,8 @@ import Banner from './Banner'
 import PopularItems from './PopularItems'
 import Products from './Products'
 import Offer from './Offer'
-import Testimonial from './Testimonial'
-import NewArrivalProducts from './NewArrivalProducts'
+// import Testimonial from './Testimonial'
+// import NewArrivalProducts from './NewArrivalProducts'
 
 const Home = () => {
   return (
@@ -14,8 +14,8 @@ const Home = () => {
        />
        <Products />
        <Offer />
-       <NewArrivalProducts />
-       <Testimonial />
+       {/* <NewArrivalProducts /> */}
+       {/* <Testimonial /> */}
 
     </div>
   )
