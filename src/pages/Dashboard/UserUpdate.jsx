@@ -19,7 +19,8 @@ const UserUpdatePage = () => {
   const [email, setUserEmail] = useState("")
   const [profile, setUserProfile] = useState("")
   const [updateUser, result] = useUpdateUserMutation()
-  const [image, setImg] = useState("")
+  const [img, setImg] = useState("")
+  const [isPicker, setIsPicker] = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   // const [formValue, setFormValue] = useState(initialState)
@@ -39,89 +40,31 @@ const UserUpdatePage = () => {
   }, [userId, data])
   const navigate = useNavigate()
 
-  if(isLoading){
-    return <div>Loading.... </div>
-  }
-
 
   const onSubmit = async (e) => {
     
-    // event.preventDefault()
-    // console.log(im)
-    const formData = new FormData()
-
-    formData.append('image', image)
-    
-    // const url = `https://api.imgbb.com/1/upload&key=${process.env.REACT_APP_ImageBB_Key}`
-
-
-    
-    await fetch('https://api.imgbb.com/1/upload&key=e3fed504b0c005f082c1c2d6796ebc76', {
-      method: "POST",
-      body: formData,
-    })
-    .then((res)=> res.json())
-    .then(result => {
-      console.log("Image bb", result)
-    })
-
-
-    /*
     const data = {
       userId,
       username,
       email,
-      profile
+      img
     }
     await updateUser(data)
-    if(result){
-      console.log(result)
-    }
-    navigate("/dashboard/users")
-    toast.success("Update user successfully")
-    */
+    
+    // navigate("/dashboard/users")
+    // toast.success("Update user successfully")
+    
   };
 
-const imageUpload = async e =>{
+
   
-  const client = filestack.init(process.env.REACT_APP_Filestack_Key);
-  const img = e.target.files[0]
-
-  client.upload(img)
-  .then((res)=> console.log(res))
-  .catch((error)=> console.log(error))
-
-
-
-
-
-
-
-
-/*
------------- for Image BB -----------------
-  const formData = new FormData()
-
-  formData.append('image', img)
-
-  await fetch('https://api.imgbb.com/1/upload&key=15abb5d6d10c5792735d187ebb3d95b0"', {
-    method: "POST",
-    body: formData,
-  })
-  .then((res)=> res.json())
-  .then(result => {
-    console.log("Image bb", result)
-  })
-  // .then((error)=> {console.log(error)})
-  
-  */
-}
 
   return (
     <div className="flex justify-center h-screen min-w-full items-center ">
+      
       <form className="md:w-1/3 w-2/3  bg-white rounded shadow p-8" onSubmit={handleSubmit(onSubmit)}>
-        <img src={profile} alt="" srcset="" className="w-20 h-20 rounded-md mx-auto " />
-        <h2 className="text-2xl font-bold my-2 text-center uppercase">Update User</h2>
+        <img src={profile} alt="" srcset="" className="w-12 h-12 rounded-md mx-auto " />
+        <h2 className="text-xl font-bold my-2 text-center uppercase">Update User</h2>
         <div className="mb-4">
           <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">
             Username
@@ -149,21 +92,42 @@ const imageUpload = async e =>{
           />
           {errors.email && <span className=" text-red-500 ">Invalid email address</span>}
         </div>
-        <div className="mb-6">
-          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="small_size">Upload Img</label>
-          <input
-           {...register('profile', { required: true, onChange: (e)=> {
-            imageUpload(e)}},)}
-          class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="small_size" type="file" />
-          
+        {img ? <div className="w-20 h-20 justify-between flex items-center ">
+            <p>New Profile </p>
+            <img src={img} alt="" className="w-20 h-20" srcset="" />
+          </div> : 
+        
+        <div onClick={()=> {isPicker ? setIsPicker(false) : setIsPicker(true)}}
+         className="flex border-2 border-gray-900 cursor-pointer h-24 bg-blue-400 items-center justify-center">
+            <p className="text-lg text-white">Choose File</p>
+                
         </div>
+}
         <div className="flex justify-end">
           <button
             type="submit"
-            className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 focus:outline-none"
+            className="bg-indigo-500 text-white w-full mt-5 py-2 rounded hover:bg-indigo-600 focus:outline-none"
           >
             Update
           </button>
+          <div className="mt-4 relative">
+          {isPicker && 
+          <PickerOverlay
+            apikey={process.env.REACT_APP_Filestack_Key}
+            onSuccess={(res) => {
+              setImg(res.filesUploaded[0].url)
+              setIsPicker(!isPicker)
+            }}
+            onError={(res) =>(alert(res))}
+            pickerOptions={{
+              maxFiles: 1,
+              accept: ["image/*"],
+              errorsTimeout: 2000,
+              maxSize: 1* 900 * 900,
+            }}
+          />
+         }
+          </div>
         </div>
       </form>
     </div>
@@ -171,3 +135,34 @@ const imageUpload = async e =>{
 };
 
 export default UserUpdatePage;
+
+/*
+
+  ///    file upload ------------------
+
+const imageUpload = async e =>{
+
+  const client = filestack.init(process.env.REACT_APP_Filestack_Key);
+  const img = e.target.files[0]
+
+  client.upload(img)
+  .then((res)=> console.log(res))
+  .catch((error)=> console.log(error))
+------------ for Image BB -----------------
+  const formData = new FormData()
+
+  formData.append('image', img)
+
+  await fetch('https://api.imgbb.com/1/upload&key=15abb5d6d10c5792735d187ebb3d95b0"', {
+    method: "POST",
+    body: formData,
+  })
+  .then((res)=> res.json())
+  .then(result => {
+    console.log("Image bb", result)
+  })
+  // .then((error)=> {console.log(error)})
+  
+  
+}
+*/
