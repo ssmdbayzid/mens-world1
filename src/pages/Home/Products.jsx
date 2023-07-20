@@ -1,17 +1,21 @@
 import React from 'react'
 import ProductsData from '../../data/ProductsData'
 import { Link } from 'react-router-dom'
+import { useProductsQuery } from '../../services/userAPI.ts'
+import Loading from '../../Share/Loading'
 
 const Products = () => {
+  const {data, isLoading} = useProductsQuery()
+
   return (
     <div className="w-5/6 mx-auto my-16 ">
       <div className="text-4xl text-center ">
         <p>Our <span className="text-primary">Products</span> </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
-      
-      {ProductsData &&  ProductsData.map((product, index)=>
-      <Link key={index} to={`/purchase/${product.id}`}>
+      <div className="grid mt-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
+      {isLoading && <Loading />}
+      {data &&  data.map((product, index)=>
+      <Link key={index} to={`/purchase/${product._id}`}>
       <div  className="group shadow-md hover:shadow-sm hover:shadow-primary relative mb-10 h-full max-w-[352px] cursor-pointer   ">
           <img src={product.img} alt="" className="w-full h-96" />
           <div className="absolute right-5 top-3 z-20 hover:shadow-xl rounded-full">

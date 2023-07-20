@@ -49,7 +49,9 @@ const UserUpdatePage = () => {
       email,
       img
     }
-    await updateUser(data)
+
+    console.log(data)
+    // await updateUser(data)
     
     // navigate("/dashboard/users")
     // toast.success("Update user successfully")

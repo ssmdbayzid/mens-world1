@@ -1,12 +1,20 @@
 import { RootState } from '@reduxjs/toolkit/dist/query/core/apiState';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {User} from './userModal'
+import { Product } from './productModal';
 
 export const usersApi = createApi({
     reducerPath: "contactsApi",
-    tagTypes: ["User"],
+    tagTypes: ["User", "Product"],
     baseQuery: fetchBaseQuery({baseUrl: "http://localhost:5000/"}),
     endpoints: (builders)=> ({
+
+        //* --------------- Get Product --------
+
+        products: builders.query<Product[], void>({
+            query: ()=> "/products",
+            providesTags: ["Product"],
+        }),
 
         //*----------- Get Users-----------
         users: builders.query<User[], void>({
@@ -53,6 +61,7 @@ export const usersApi = createApi({
 
 
 export const {
+    useProductsQuery,
     useUsersQuery,
     useAddUserMutation,
     useDeleteUserMutation,
