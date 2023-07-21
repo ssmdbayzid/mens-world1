@@ -6,7 +6,7 @@ import { Product } from './productModal';
 export const usersApi = createApi({
     reducerPath: "contactsApi",
     tagTypes: ["User", "Product"],
-    baseQuery: fetchBaseQuery({baseUrl: "http://localhost:5000/"}),
+    baseQuery: fetchBaseQuery({baseUrl: "https://jolly-fox-handbag.cyclic.app/"}),
     endpoints: (builders)=> ({
 
         //* --------------- Get Products --------

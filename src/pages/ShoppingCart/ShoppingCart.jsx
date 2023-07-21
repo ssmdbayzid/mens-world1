@@ -65,7 +65,7 @@ const ShoppingCart = () => {
           <div className=''>
               <h1 onClick={()=>handleRemoveCartItem(item)} className="w-8 ml-auto font-semibold cursor-pointer hover:text-red-600"> <XMarkIcon /> </h1>
               <div className="flex items-center justify-center mt-16 font-bold">
-              Total: ${item.price * item.cartQuantity}
+              Total: ${(item.price * item.cartQuantity).toFixed(2)}
               </div>
             </div>
         </div>

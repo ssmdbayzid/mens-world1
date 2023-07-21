@@ -14,11 +14,15 @@ function ShoppingCartModal({show, setShow}) {
     
     useEffect(()=>{
         dispatch(getTotals())
+
     },[cart, dispatch])
 
     const handleRemoveCartItem = (item)=> {
         dispatch(removeCartItem(item))                     
     }   
+    if(cart){
+        console.log(cart)
+    }
 
 
     return (
@@ -47,7 +51,7 @@ function ShoppingCartModal({show, setShow}) {
                             </div>
                         </div>
                         <div>
-                            <p className="font-bold mb-8">${item.price * item.cartQuantity}.00</p>
+                            <p className="font-bold mb-8">${(item.price * item.cartQuantity).toFixed(2)}</p>
                             <p
                             onClick={()=> handleRemoveCartItem(item)}
                             className="mt-auto text-red-600 cursor-pointer">remove</p>
