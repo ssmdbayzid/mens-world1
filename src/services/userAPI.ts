@@ -9,11 +9,18 @@ export const usersApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: "http://localhost:5000/"}),
     endpoints: (builders)=> ({
 
-        //* --------------- Get Product --------
+        //* --------------- Get Products --------
 
         products: builders.query<Product[], void>({
             query: ()=> "/products",
             providesTags: ["Product"],
+        }),
+
+        //* ------------- Get product ----------
+
+        product: builders.query<Product, void>({
+            query: (productId)=> `/products/${productId}`,
+            providesTags: ["Product"]
         }),
 
         //*----------- Get Users-----------
@@ -61,7 +68,14 @@ export const usersApi = createApi({
 
 
 export const {
+    
+    // Product
+    
     useProductsQuery,
+    useProductQuery,
+    
+    // User 
+
     useUsersQuery,
     useAddUserMutation,
     useDeleteUserMutation,

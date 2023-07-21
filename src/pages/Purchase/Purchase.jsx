@@ -3,22 +3,25 @@ import { useParams } from 'react-router'
 import ProductsData from '../../data/ProductsData';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/features/cartSlice';
+import { useProductQuery } from '../../services/userAPI.ts';
+import Loading from '../../Share/Loading';
 
 const Purchase = () => {
 
-  const {id} = useParams();
-  const [product, setProduct] = useState(null)
+  const {productId} = useParams();
+  const {data, isLoading} = useProductQuery(productId)
 
-
-   useEffect(()=>{
+  
+  //  useEffect(()=>{
     
-    if(id){
-      const porchaseProduct = ProductsData.filter((item)=> item.id == id)
-      setProduct(porchaseProduct[0])
+  //   if(id){
+  //     const porchaseProduct = ProductsData.filter((item)=> item.id == id)
+  //     setProduct(porchaseProduct[0])
 
-    }
-   },[id])
+  //   }
+  //  },[id])
 
+   
   // const {name, description, price, img, rating} = product;
   const  dispatch = useDispatch()
 
@@ -29,15 +32,16 @@ const Purchase = () => {
   
   return (
     <>
-     {product && <section className="text-gray-600 body-font overflow-hidden">
+    {isLoading && <Loading />}
+     {data && <section className="text-gray-600 body-font overflow-hidden">
   <div className="container  py-24 mx-auto w-5/6">
     <div className="lg:w-4/5 w-full mx-auto flex flex-wrap ">
       <div>
-      <img alt="ecommerce" className=" w-[400px] max-w-[400px]  border-2 object-cover object-center rounded" src={product.img}/>
+      <img alt="ecommerce" className=" w-[400px] max-w-[400px]  border-2 object-cover object-center rounded" src={data.img}/>
       </div>
       <div className="lg:w-1/2 mx-auto w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-        <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.name}</h1>
+        <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{data.name}</h1>
         <div className="flex mb-4">
           <span className="flex items-center">
             <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
@@ -55,7 +59,7 @@ const Purchase = () => {
             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
             </svg>
-            <span className="text-gray-600 ml-3">{product.rating} Reviews</span>
+            <span className="text-gray-600 ml-3">{data.rating} Reviews</span>
           </span>
           <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
             <a className="text-gray-500">
@@ -80,7 +84,7 @@ const Purchase = () => {
 </svg> </p>
 
         <h2 className="text-lg mt-2 title-font text-gray-500 tracking-widest">Description</h2>
-        <p className="leading-relaxed">{product.description}</p>
+        <p className="leading-relaxed">{data.description}</p>
         <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
           <div className="flex">
             <span className="mr-3">Color</span>
@@ -106,8 +110,8 @@ const Purchase = () => {
           </div>
         </div>
         <div className="flex">
-          <span className="title-font font-medium text-2xl text-gray-900">${product.price}.00</span>
-          <button onClick={()=> handleAddToCart(product)}
+          <span className="title-font font-medium text-2xl text-gray-900">${data.price}.00</span>
+          <button onClick={()=> handleAddToCart(data)}
            className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Add to cart</button>
           <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
             <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">

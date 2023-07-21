@@ -1,26 +1,36 @@
 import React from 'react'
-import {useSignInWithGoogle, useSignInWithGithub, useAuthState} from 'react-firebase-hooks/auth'
+import {useSignInWithGoogle, useSignInWithGithub, } from 'react-firebase-hooks/auth'
 import logo from '../../assets/logo.png'
 import {LockClosedIcon,} from '@heroicons/react/24/solid'
 import auth from '../../firebase.init'
 import { useLocation, useNavigate } from 'react-router'
+import Loading from '../../Share/Loading'
 
 
 const LogIn = () => {
 
-  const [signInWithGoogle,user, loading, error] = useSignInWithGoogle(auth)
+  const [signInWithGoogle,user, loading1, error1] = useSignInWithGoogle(auth)
   const [signInWithGithub, user2, loading2, error2] = useSignInWithGithub(auth)
-  const [user3] = useAuthState(auth)
+  // const [user3] = useAuthState(auth)
 
   const navigate = useNavigate()
   const location = useLocation()
 
-  const from = location.state?.from?.pathname || "/home"
+  let from = location.state?.from?.pathname || "/home"
 
   if(from){
     console.log(from)
   }
 
+  
+  if(loading1 || loading2){
+   return  <p className="absolute top-1/2 left-1/2 text-xl"><Loading /> </p>
+  }
+
+  if(user|| user2){
+    navigate(from, {replace: true})
+  }
+  
   const googleLogIn = e => {
     
     console.log("click on google link function")
@@ -34,16 +44,12 @@ const LogIn = () => {
     // e.preventDefault()
   }
 
-  if(loading || loading2){
-    <p className="absolute top-1/2 left-1/2 text-xl">Loading </p>
-  }
 
-  if(user|| user2|| user3){
-    navigate(from, {replace: true})
-  }
 
-  if(error|| error2){
-  <p className="text-red-500 my-1">Error: {error.message || error2.message}</p>
+  let error;
+
+  if(error1|| error2){
+    error = <p className="text-red-500 my-1">Error: {error1.message || error2.message}</p>
   }
 
 
@@ -51,8 +57,8 @@ const LogIn = () => {
   return (
     <div style={{backgroundImage:`url('https://img.freepik.com/premium-photo/fashionable-woman-hat-long-dress_137441-2091.jpg')`}} className={`h-screen  bg-cover bg-center bg-no-repeat flex items-center justify-center`}>
       <div className="w-5/6 sm:w-1/2 md:w-1/3">
-        <img src={logo} alt="" className="w-24 mx-auto shadow-white shadow-md rounded-full" />
-        <h1 className="uppercase text-3xl text-white text-center mt-10 mb-5">Log In</h1>
+        <img src={logo} alt="" className="w-14 mx-auto mt-10 shadow-white shadow-md rounded-full" />
+        <h1 className="uppercase text-3xl text-white text-center mt-2 mb-5">Log In</h1>
 
         <div className="bg-secondary p-4  rounded-lg">
           <div className="flex justify-between my-5">
@@ -62,7 +68,7 @@ const LogIn = () => {
           <form action="">
             <input type="text" name="username" id="" className="w-full rounded-lg  border mb-3" placeholder="Username" />
             <input type="password" name="password" id="" className="w-full rounded-lg  border mb-3" placeholder="Password" />
-            {error || error2}
+            {error}
 
 
             <button type='submit' className="bg-primary w-full py-2.5  rounded-lg text-white text-xl">Log In</button>
