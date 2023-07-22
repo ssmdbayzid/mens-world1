@@ -50,11 +50,16 @@ const UserUpdatePage = () => {
       img
     }
 
-    console.log(data)
-    // await updateUser(data)
+    // console.log(data)
+    await updateUser(data)
+    if(result){
+      console.log(result)
+      if(result.isSuccess === true){
+        navigate("/dashboard/users")
+        toast.success("Update user successfully")
+      }
+    }
     
-    // navigate("/dashboard/users")
-    // toast.success("Update user successfully")
     
   };
 

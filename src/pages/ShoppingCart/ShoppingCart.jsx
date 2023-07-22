@@ -4,15 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { ShoppingCartIcon } from '@heroicons/react/outline';
 import {PlusIcon, MinusIcon, XMarkIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
 import { addToCart, decreaseCartQty, getTotals, removeCartItem } from '../../store/features/cartSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ShoppingCart = () => {
   const [isOpen, setIsOpen] = useState(false);
   
+    const navigate = useNavigate()
 
-
-
-  let cart = useSelector((state)=> state.cart)
+    let cart = useSelector((state)=> state.cart)
 
   const dispatch = useDispatch()
 
@@ -37,6 +36,9 @@ const ShoppingCart = () => {
     dispatch(removeCartItem(item))
   }
 
+  const handlePlaceOrder = event => {
+    navigate("/checkOut")
+  }
 
   return (
     <div className="container mx-auto py-8 w-5/6 pt-16 h-full">
@@ -82,13 +84,13 @@ const ShoppingCart = () => {
         </div>
         <div className="flex justify-between items-center mt-5">
         <p className="text-lg font-semibold">Shipping Charge</p>
-        <p className="text-lg font-semibold">${ (cart.cartTotalAmount/100 * 2).toFixed(2) }</p>
+        <p className="text-lg font-semibold">${ (cart.cartTotalAmount/100 * 5).toFixed(2) }</p>
         </div>
         <div className="flex justify-between items-center mt-20">
         <p className="text-lg font-semibold">Total Price</p>
         <p className="text-lg font-semibold">${(cart.cartTotalAmount + parseFloat((cart.cartTotalAmount/100 * 5))).toFixed(2) }</p>
         </div>
-        <button className="w-full mt-5 py-2.5 bg-secondary text-white font-semibold ">Procees to checkout</button>
+        <button onClick={()=> navigate("/checkOut")} className="w-full mx-auto mt-10 text-center py-2.5 bg-secondary text-white font-semibold ">Procees to checkout</button>
 
        <Link className="flex justify-center mt-5" to={"/home"}>or  <span className="text-blue-600 font-bold flex items-center ml-2 ">Continue Shopping <ArrowRightIcon className="w-5 ml-2" /></span> </Link>
        </div>

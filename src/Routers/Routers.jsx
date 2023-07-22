@@ -6,6 +6,7 @@ import { Route, Routes} from "react-router"
 import RequireAuth from "../pages/RequireAuth/RequireAuth"
 
 import { AllProducts, AllUsers, Dashboard, Home, Log_In, Purchase, ShoppingCart, Sign_Up, UpdateUser } from "../pages"
+import CheckOutPage from "../pages/ShoppingCart/CheckOutPage"
 
 
 const Routers = () => {
@@ -24,6 +25,11 @@ const Routers = () => {
              <Route path="/shoppingCart" element={
                 <RequireAuth>
                 < ShoppingCart />
+                </RequireAuth>
+                } />
+             <Route path="/checkOut" element={
+                <RequireAuth>
+                < CheckOutPage />
                 </RequireAuth>
                 } />
 
