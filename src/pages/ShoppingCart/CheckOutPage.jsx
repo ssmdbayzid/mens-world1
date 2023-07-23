@@ -99,15 +99,27 @@ const CheckOutPage = () => {
       <label for="name" className="mt-4 mb-2 block text-sm font-medium">Name</label>
         <input 
         {...register('name', {required: true})}
-        type="text" id="name" name="email" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="YOUR FULL NAME HERE" />
+        type="text" id="name" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="YOUR FULL NAME HERE" />
 
       </div>
-      <label for="address" className="mt-4 mb-2 block text-sm font-medium">Address</label>
-      <div className="relative">
-        <input
-        {...register('address', {required: true})}
-        type="text" id="address" name="address" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-3 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your full Address" />
+      
+      <div className="flex gap-3 pr-3">
+        <div className="relative basis-1/3 flex-shrink-0">
+      <label for="city" className="mt-4 mb-2 block text-sm font-medium">Mobile</label>
+          <input
+           {...register('mobile', {required: true, minLength: 11})} 
+          type="number" id="mobile"  className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your City" />
 
+        </div>
+        <div className="relative basis-2/3 flex-shrink-0">
+        <label for="address" className="mt-4 mb-2 block text-sm font-medium">Address</label>
+          <input
+           {...register('address', {required: true, minLength: 11})} 
+          type="text" id="address" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Zip Code" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">     
+          </div>
+        </div>
+        
       </div>
       <div className="flex gap-3 pr-3">
         <div className="relative basis-1/2 flex-shrink-0">
@@ -115,8 +127,7 @@ const CheckOutPage = () => {
           <input
            {...register('city', {required: true})} 
           type="text" id="city"  className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your City" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">  ...   
-          </div>
+
         </div>
         <div className="relative basis-1/2 flex-shrink-0">
         <label for="zip" className="mt-4 mb-2 block text-sm font-medium">Zip Code</label>
@@ -134,11 +145,10 @@ const CheckOutPage = () => {
         <select
         {...register('country', {required: true})}
         id="country" class="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
-        <option selected>Choose a country</option>
-        <option value="BDT">Bangladesh</option>
-        <option value="USD">America</option>
-        <option value="PKR">Pakistan</option>
-        <option value="SAR">Saudia</option>
+        <option selected value="Bangladesh">Bangladesh</option>
+        <option value="America">America</option>
+        <option value="Pakistan">Pakistan</option>
+        <option value="Saudia">Saudia</option>
         </select>
         </div>
         <div className="relative basis-1/2 flex-shrink-0">
