@@ -1,10 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useForm } from 'react-hook-form';
+
 
 const CheckOutPage = () => {
-
+    const {register, handleSubmit, formState: {error}} = useForm()
     let cart = useSelector((state)=> state.cart)
 
+
+      const handformSubmit = (data, event) => {
+        event.preventDefault()
+        console.log(data)
+      }
 
   return (
     <div>
@@ -87,27 +94,35 @@ const CheckOutPage = () => {
   <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
     <p className="text-xl font-medium">Shipping Address</p>
     <p className="text-gray-400">Complete your order by providing your payment details.</p>
-    <div className="">
-      <label for="name" className="mt-4 mb-2 block text-sm font-medium">Name</label>
+    <form onSubmit={handleSubmit(handformSubmit)} >
       <div className="relative">
-        <input type="text" id="name" name="email" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="YOUR FULL NAME HERE" />
+      <label for="name" className="mt-4 mb-2 block text-sm font-medium">Name</label>
+        <input 
+        {...register('name', {required: true})}
+        type="text" id="name" name="email" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="YOUR FULL NAME HERE" />
 
       </div>
-      <label for="card-holder" className="mt-4 mb-2 block text-sm font-medium">Address</label>
+      <label for="address" className="mt-4 mb-2 block text-sm font-medium">Address</label>
       <div className="relative">
-        <input type="text" id="address" name="address" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-3 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your full Address" />
+        <input
+        {...register('address', {required: true})}
+        type="text" id="address" name="address" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-3 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your full Address" />
 
       </div>
       <div className="flex gap-3 pr-3">
         <div className="relative basis-1/2 flex-shrink-0">
       <label for="city" className="mt-4 mb-2 block text-sm font-medium">City</label>
-          <input type="text" id="city" name="card-no" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your City" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">     
+          <input
+           {...register('city', {required: true})} 
+          type="text" id="city"  className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your City" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">  ...   
           </div>
         </div>
         <div className="relative basis-1/2 flex-shrink-0">
-        <label for="city" className="mt-4 mb-2 block text-sm font-medium">Zip Code</label>
-          <input type="text" id="card-no" name="card-no" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Zip Code" />
+        <label for="zip" className="mt-4 mb-2 block text-sm font-medium">Zip Code</label>
+          <input
+          {...register('zip', {required: true})}
+          type="text" id="zip" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Zip Code" />
           <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">     
           </div>
         </div>
@@ -115,8 +130,10 @@ const CheckOutPage = () => {
       </div>
       <div className="flex items-center gap-3 pr-3">
         <div className="relative basis-1/2 flex-shrink-0">
-        <label for="city" className="mt-4 mb-2 block text-sm font-medium">Country</label>
-        <select id="default" class="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
+        <label for="country" className="mt-4 mb-2 block text-sm font-medium">Country</label>
+        <select
+        {...register('country', {required: true})}
+        id="country" class="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
         <option selected>Choose a country</option>
         <option value="BDT">Bangladesh</option>
         <option value="USD">America</option>
@@ -125,8 +142,10 @@ const CheckOutPage = () => {
         </select>
         </div>
         <div className="relative basis-1/2 flex-shrink-0">
-        <label for="city" className="mt-4 mb-2 block text-sm font-medium">Currency</label>
-        <select id="default" class="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
+        <label for="currency" className="mt-4 mb-2 block text-sm font-medium">Currency</label>
+        <select
+        {...register('currency', {required: true})}
+        id="currency" class="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
         
         <option selected value="BDT">BDT</option>
         <option value="USD">USD</option>
@@ -154,8 +173,8 @@ const CheckOutPage = () => {
         <p className="text-sm font-medium text-gray-900">Total</p>
         <p className="text-2xl font-semibold text-gray-900">${(cart.cartTotalAmount + parseFloat((cart.cartTotalAmount / 100 * 5))).toFixed(2)}</p>
       </div>
-    </div>
     <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
+    </form>
   </div>
 </div>
     </div>)
