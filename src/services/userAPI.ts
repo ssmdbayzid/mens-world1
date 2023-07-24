@@ -1,7 +1,8 @@
 import { RootState } from '@reduxjs/toolkit/dist/query/core/apiState';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {User} from './userModal'
-import { Product } from './productModal';
+import {User} from './Modal/userModal'
+import { Product } from './Modal/productModal';
+import { Order } from './Modal/OrderModal';
 
 export const usersApi = createApi({
     reducerPath: "contactsApi",
@@ -22,6 +23,18 @@ export const usersApi = createApi({
             query: (productId)=> `/products/${productId}`,
             providesTags: ["Product"]
         }),
+
+
+        //----------- Order -----------------
+
+        postOrder:builders.mutation<{}, Order>({
+            query: (order)=> ({
+                url: "/orders",
+                method: "POST",
+                body: order,
+            })
+        }),
+
 
         //*----------- Get Users-----------
         users: builders.query<User[], void>({
@@ -68,7 +81,9 @@ export const usersApi = createApi({
 
 
 export const {
-    
+    // Order
+    usePostOrderMutation,
+
     // Product
     
     useProductsQuery,

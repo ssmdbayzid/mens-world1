@@ -1,16 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form';
+import { usePostOrderMutation } from '../../services/userAPI.ts';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init.js';
 
 
 const CheckOutPage = () => {
+  
+  const [postOrder, result] = usePostOrderMutation()
     const {register, handleSubmit, formState: {error}} = useForm()
+  const [user] = useAuthState(auth);
+
+
     let cart = useSelector((state)=> state.cart)
-
-
-      const handformSubmit = (data, event) => {
+    
+      const handformSubmit = async (data, event) => {
         event.preventDefault()
-        console.log(data)
+        const {name, mobile, address, city, zip, country, currency} = data
+        const totalPrice = (cart.cartTotalAmount + parseFloat((cart.cartTotalAmount / 100 * 5))).toFixed(2)
+        const email = user.email;
+
+        const order = {
+          name,
+          email, 
+          mobile,
+          address,
+          city,
+          zip,
+          country,
+          currency,
+          totalPrice
+      }
+      console.log(order)
+        await  postOrder(order)
+
+        if(result){
+          console.log(result)
+        }
+
       }
 
   return (
@@ -105,7 +133,7 @@ const CheckOutPage = () => {
       
       <div className="flex gap-3 pr-3">
         <div className="relative basis-1/3 flex-shrink-0">
-      <label for="city" className="mt-4 mb-2 block text-sm font-medium">Mobile</label>
+      <label for="mobile" className="mt-4 mb-2 block text-sm font-medium">Mobile</label>
           <input
            {...register('mobile', {required: true, minLength: 11})} 
           type="number" id="mobile"  className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your City" />
@@ -115,7 +143,7 @@ const CheckOutPage = () => {
         <label for="address" className="mt-4 mb-2 block text-sm font-medium">Address</label>
           <input
            {...register('address', {required: true, minLength: 11})} 
-          type="text" id="address" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Zip Code" />
+          type="text" id="address" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street Address" />
           <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">     
           </div>
         </div>
@@ -132,8 +160,8 @@ const CheckOutPage = () => {
         <div className="relative basis-1/2 flex-shrink-0">
         <label for="zip" className="mt-4 mb-2 block text-sm font-medium">Zip Code</label>
           <input
-          {...register('zip', {required: true})}
-          type="text" id="zip" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Zip Code" />
+          {...register('zip', {required: true, minLength: 4})}
+          type="number" id="zip" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Zip Code" />
           <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">     
           </div>
         </div>
@@ -176,7 +204,7 @@ const CheckOutPage = () => {
         </div>
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Shipping</p>
-          <p className="font-semibold text-gray-900">${(cart.cartTotalAmount / 100 * 5).toFixed(2)}</p>
+          <p className="font-semibold text-gray-900">${(cart.cartTotalAmount / 100 * 5).toFixed(2)} </p>
         </div>
       </div>
       <div className="mt-6 flex items-center justify-between">
