@@ -27,7 +27,7 @@ export const usersApi = createApi({
 
         //----------- Order -----------------
 
-        postOrder:builders.mutation<{}, Order>({
+        postOrder:builders.mutation<[], Order>({
             query: (order)=> ({
                 url: "/orders",
                 method: "POST",

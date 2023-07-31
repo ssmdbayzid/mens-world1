@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form';
 import { usePostOrderMutation } from '../../services/userAPI.ts';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init.js';
+import { getTotals } from '../../store/features/cartSlice.jsx';
 
 
 const CheckOutPage = () => {
@@ -14,7 +15,16 @@ const CheckOutPage = () => {
 
 
     let cart = useSelector((state)=> state.cart)
+
+    const dispatch = useDispatch()
     
+    useEffect(()=>{
+      dispatch(getTotals())
+    },[cart, dispatch])
+
+
+    let spinner;
+
       const handformSubmit = async (data, event) => {
         event.preventDefault()
         const {name, mobile, address, city, zip, country, currency} = data
@@ -32,13 +42,12 @@ const CheckOutPage = () => {
           currency,
           totalPrice
       }
-      console.log(order)
+      
         await  postOrder(order)
-
-        if(result){
-          console.log(result)
-        }
-
+          
+          if(result.data?.url){
+           return window.location.replace(result.data.url)
+          }
       }
 
   return (
@@ -74,11 +83,12 @@ const CheckOutPage = () => {
   </div>
 </div>
 <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
+
   <div className="px-4 pt-8">
     <p className="text-xl font-medium">Order Summary</p>
     <p className="text-gray-400">Check your items. And select a suitable shipping method.</p>
     <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
-      {cart && cart.cartItems.map((item, index)=> <div className="flex  rounded-lg bg-white sm:flex-row">
+      {cart && cart.cartItems.map((item, index)=> <div key={index} className="flex  rounded-lg bg-white sm:flex-row">
         <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={item.img} alt="" />
         <div className="px-4 py-4 w-full flex flex-col ">
          <div className="w-full flex justify-between">
@@ -211,7 +221,7 @@ const CheckOutPage = () => {
         <p className="text-sm font-medium text-gray-900">Total</p>
         <p className="text-2xl font-semibold text-gray-900">${(cart.cartTotalAmount + parseFloat((cart.cartTotalAmount / 100 * 5))).toFixed(2)}</p>
       </div>
-    <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
+    <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"> Place Order</button>
     </form>
   </div>
 </div>
